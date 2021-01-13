@@ -1,0 +1,29 @@
+body {
+    background-color: #EEEEEE;
+}
+
+#jumbo {
+    background-color: #1f7cff;
+    color: #FFFFFF;
+}
+
+#text h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#text p {
+    font-size: 1.8;
+    color: #FFFFFF;
+}
+
+#event {
+    padding: 0;
+    border-left: 2px solid #CCCCCC;
+    background-color: #efefef;
+}
+
+#event h2 {
+    background-color: #1f7cff;
+    color: #FFFFFF;
+}
