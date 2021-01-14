@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription{% endblock %}
+{% block title %}Infos membres{% endblock %}
 
 {% block content %}
+    
     <div class="w3-card col-md-4 mx-auto p-0" id="register">
         <header class="w3-container w3-blue">
             <h3>CHAD - INSCRIPTION</h3>
         </header>
-        <div class="">
+        <div class="my-custom-class-for-errors">
             {{ form_errors(form) }}
         </div>
 
-        <div class="p-3 w3-container">
+        <div class="w3-container">
             {{ form(form) }}
         </div>
-        
     </div>
+
 {% endblock %}
