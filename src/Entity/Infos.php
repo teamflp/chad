@@ -88,24 +88,30 @@ class Infos
     private $nationalite;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=50)
      */
     private $marie;
 
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
-     */
-    private $photo;
+    public function __construct()
+    {
+        // $this->isVerified = false;
+        $this->registerAt = new \DateTimeImmutable('now');
+        // $this->roles = ['ROLE_USER'];
+        // $this-> accountMustBeverifiedBefore = (new \DateTimeImmutable('now'))->add(new \DateInterval("P1D"));
+    }
+
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime_immutable")
      */
-    private $dateRegister;
+    private $registerAt;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="infos")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $User;
+    private $user;
+
 
     public function __toString()
     {
@@ -285,50 +291,39 @@ class Infos
         return $this;
     }
 
-    public function getMarie(): ?bool
+    public function getMarie(): ?string
     {
         return $this->marie;
     }
 
-    public function setMarie(bool $marie): self
+    public function setMarie(string $marie): self
     {
         $this->marie = $marie;
 
         return $this;
     }
+  
 
-    public function getPhoto(): ?string
+    public function getRegisterAt(): \DateTimeImmutable
     {
-        return $this->photo;
+        return $this->registerAt;
     }
 
-    public function setPhoto(?string $photo): self
+    public function setRegisterAt(\DateTimeImmutable $registerAt): self
     {
-        $this->photo = $photo;
+        $this->registerAt = $registerAt;
 
         return $this;
     }
 
-    public function getDateRegister(): ?\DateTimeInterface
+    public function getUserId(): User
     {
-        return $this->dateRegister;
+        return $this->user;
     }
 
-    public function setDateRegister(\DateTimeInterface $dateRegister): self
+    public function setUserId(User $user): self
     {
-        $this->dateRegister = $dateRegister;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(?User $User): self
-    {
-        $this->User = $User;
+        $this->user = $user;
 
         return $this;
     }

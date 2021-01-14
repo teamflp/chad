@@ -81,7 +81,7 @@ class InfosType extends AbstractType
                 ],
             ])
             ->add('codePostal', TextType::class, [
-                'label' => 'Adresse postale',
+                'label' => 'Code postal',
                 'required' => true,
                 'invalid_message' => 'Le champ adresse postale est requis',
                 'attr' => [
@@ -144,33 +144,42 @@ class InfosType extends AbstractType
                 'label' => 'Situation du foyer',
                 'help' => 'veuillez choisir votre situation',
                 'choices' => [
-                 
-                    'Marié(e)' => true,
-                    'Celibataire' => true,
-                    'Divorcé(e)/Séparé(e)' => true,
-                    'Pacsé(e)' => true,
-                    'Veuf(ve)' => true
+                    'Marie' => 'Marié(e)',
+                    'Celib' => 'Celibataire',
+                    'Divorce)' => 'Divorcé(e)',
+                    'Sépare' => 'Séparé(e)',
+                    'Pacse' => 'Pacsé(e)',
+                    'Veuf' => 'Veuf(ve)'
                 ],
             ])
-            ->add('photo', FileType::class, [
-                'mapped' => false,
-                'label' => 'Photo',
-                'required' => false,
-                'constraints' => [
-                    new ConstraintsFile([
-                        'maxSize' => '2048k', // 2,86 Mo
-                        'mimeTypes' => [
-                            'applications/jpg',
-                            'applications/png',
-                            'applications/webp',
-                        ],
-                        'mimeTypesMessage' => 'Veuillez choisir un fichier valide.'
-                    ])
-                ],
-            ])
-            ->add('dateRegister', HiddenType::class, [
-                'label' => false,
-            ])
+
+            // ->add('marie', TextType::class, [
+            //     'label' => 'Situation du foyer',
+            //     'help' => 'Celibataire, Divorcé(e), Séparé(e), Pacsé(e), Veuf(ve)',
+            //     'required' => true,
+            //     'invalid_message' => 'Le champ situation du foyer est requis',
+            //     'attr' => [
+            //         'class' => 'form-control col-md-12'
+            //     ],
+            // ])
+            // ->add('photo', FileType::class, [
+            //     'mapped' => false,
+            //     'label' => 'Photo',
+            //     'required' => false,
+            //     'constraints' => [
+            //         new ConstraintsFile([
+            //             'maxSize' => '2048k', // 2,86 Mo
+            //             'mimeTypes' => [
+            //                 'applications/jpg',
+            //                 'applications/png',
+            //             ],
+            //             'mimeTypesMessage' => 'Veuillez choisir un fichier valide.'
+            //         ])
+            //     ],
+            // ])
+            // ->add('dateRegister', DateType::class, [
+            //     'label' => false,
+            // ])
             ->add('submit', SubmitType::class, [
                 'label' => "S'INSCRIRE",
                 'attr' => [

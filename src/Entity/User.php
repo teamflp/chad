@@ -38,14 +38,18 @@ class User implements UserInterface
      */
     private $password;
 
+    private $users;
+
     /**
-     * @ORM\OneToMany(targetEntity=Infos::class, mappedBy="User")
+     * @ORM\OneToMany(targetEntity=Infos::class, mappedBy="user_id")
      */
     private $infos;
 
     public function __construct()
     {
-        $this->infos = new ArrayCollection();
+        // $this->infos = new ArrayCollection();
+        $this->roles = ['ROLE_USER'];
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,6 +130,36 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(self $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(self $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            // if ($user->getInfos() === $this) {
+            //     $user->setInfos(null);
+            // }
+        }
+
+        return $this;
+    }
+
     /**
      * @return Collection|Infos[]
      */
@@ -138,7 +172,7 @@ class User implements UserInterface
     {
         if (!$this->infos->contains($info)) {
             $this->infos[] = $info;
-            $info->setUser($this);
+            $info->setUserId($this);
         }
 
         return $this;
@@ -148,8 +182,8 @@ class User implements UserInterface
     {
         if ($this->infos->removeElement($info)) {
             // set the owning side to null (unless already changed)
-            if ($info->getUser() === $this) {
-                $info->setUser(null);
+            if ($info->getUserId() === $this) {
+                $info->setUserId(null);
             }
         }
 

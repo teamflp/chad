@@ -37,9 +37,9 @@ class RegisterController extends AbstractController
 
             $this->em->persist($user);
             $this->em->flush();
-
-            dd($user);
+            return $this->redirectToRoute('infos');
         }
+
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(),
         ]);
